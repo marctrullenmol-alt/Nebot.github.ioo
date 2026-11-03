@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="es" data-palette="cobalt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEBOT AUTOMOCIÓN | Taller Multimarca, Equipamiento y Diagnosis en Castellón</title>
+  <meta name="description" content="Nebot Automoción en Castelló de la Plana (Avda. Almazora, 96). Taller multimarca especialista en diagnosis avanzada, inyección diésel y gasolina, mecánica general, línea Pre-ITV, electricidad, electrónica y carrocería." />
+  <meta name="keywords" content="Nebot Automoción, taller mecánico Castellón, equipamiento taller Castellón, diagnosis automóvil Castellón, inyección diésel Castellón, Pre-ITV Castellón" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Barra Superior de Información Directa -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <div class="status-pill" id="workshopStatusPill">
+          <span class="status-dot"></span>
+          <span id="workshopStatusText">TALLER MULTIMARCA · CASTELLÓN</span>
+        </div>
+        <a href="https://maps.google.com/maps/?q=39.972942,-0.0501026" target="_blank" rel="noopener" class="topbar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Avda. Almazora, 96 · 12005 Castelló de la Plana</span>
+        </a>
+      </div>
+      <div class="topbar-right">
+        <button type="button" class="topbar-item" onclick="selectServiceAndOpenBooking('Servicio de entrega y recogida')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Recogida y Entrega</span>
+        </button>
+        <button type="button" class="topbar-item" onclick="selectServiceAndOpenBooking('Pasamos la ITV por usted')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <span>Pasamos la ITV por Usted</span>
+        </button>
+        <a href="tel:+34964218668" class="topbar-item" style="color:#fff; font-weight:700;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>964 21 86 68</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cabecera Principal con Selector de Paleta -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <div class="brand" onclick="switchMainTab('inicio')" role="button" tabindex="0">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">NEBOT <span>AUTOMOCIÓN</span></span>
+          <span class="brand-sub">Castelló de la Plana · Taller Multimarca</span>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Selector de Paleta de Colores en Vivo -->
+        <div class="palette-switcher" title="Cambiar paleta de colores">
+          <span class="palette-label">COLOR:</span>
+          <button type="button" class="palette-dot active" data-set-palette="cobalt" aria-label="Paleta Azul Ingeniería" title="Azul Ingeniería & Pizarra"></button>
+          <button type="button" class="palette-dot" data-set-palette="emerald" aria-label="Paleta Esmeralda Técnico" title="Esmeralda Técnico & Titanio"></button>
+          <button type="button" class="palette-dot" data-set-palette="midnight" aria-label="Paleta Cobalto Nocturno" title="Modo Cobalto Nocturno"></button>
+        </div>
+
+        <a href="tel:+34964218668" class="btn btn-outline btn-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          964 21 86 68
+        </a>
+        <button type="button" class="btn btn-primary btn-sm" onclick="switchMainTab('contacto')">
+          Pedir Cita / Presupuesto
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BARRA DE PESTAÑAS INTERACTIVAS (Todo dividido por pestañas) -->
+  <div class="tabs-bar-wrapper">
+    <div class="container">
+      <nav class="app-tabs-nav" role="tablist" aria-label="Secciones de Nebot Automoción">
+        <button type="button" class="app-tab-btn active" role="tab" aria-selected="true" data-tab-target="inicio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Inicio</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="equipamiento">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span>Equipamiento Técnico</span>
+          <span class="tab-count-badge">5 Áreas</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="servicios">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <span>Servicios</span>
+          <span class="tab-count-badge">20</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="el-taller">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>El Taller y Garantía</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="consejos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Asesor Km & Consejos</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="galeria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Galería</span>
+        </button>
+
+        <button type="button" class="app-tab-btn" role="tab" aria-selected="false" data-tab-target="contacto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Cita Previa y Contacto</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- CONTENIDO DE LAS PESTAÑAS -->
+  <main class="tabs-viewport">
+    <div class="container">
+
+      <!-- =========================================================
+           PESTAÑA 1: INICIO (RESUMEN EJECUTIVO Y ACCESO A PESTAÑAS)
+           ========================================================= -->
+      <section class="tab-panel active" id="tab-inicio" role="tabpanel">
+        <div class="hero-banner">
+          <div class="hero-inner">
+            <div>
+              <div class="eyebrow">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                Avda. Almazora, 96 · Castelló de la Plana
+              </div>
+              <h1>
+                Ingeniería, Diagnosis e <span class="text-gradient">Inyección Multimarca</span> en Castellón
+              </h1>
+              <p class="hero-lead">
+                En <strong>Nebot Automoción</strong> combinamos años de experiencia y formación continua con el equipamiento tecnológico más moderno. Intervenimos sobre cualquier sistema de tu turismo o vehículo comercial, diésel o gasolina, <strong>manteniendo intacta la garantía oficial del fabricante</strong>.
+              </p>
+
+              <div class="hero-cta-group">
+                <button type="button" class="btn btn-light" onclick="switchMainTab('equipamiento')">
+                  Ver Equipamiento del Taller
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button type="button" class="btn btn-primary" onclick="switchMainTab('servicios')">
+                  Explorar los 20 Servicios
+                </button>
+                <button type="button" class="btn btn-outline" style="background:rgba(255,255,255,0.08); color:#fff; border-color:rgba(255,255,255,0.22);" onclick="switchMainTab('contacto')">
+                  Pedir Cita Previa
+                </button>
+              </div>
+
+              <div class="hero-trust-grid">
+                <div>
+                  <div class="trust-val">100<span>%</span></div>
+                  <div class="trust-label">Multimarca · Turismos y Comerciales (Diésel y Gasolina)</div>
+                </div>
+                <div>
+                  <div class="trust-val">20<span>+</span></div>
+                  <div class="trust-label">Especialidades: Inyección, Diagnosis, Pre-ITV y Carrocería</div>
+                </div>
+                <div>
+                  <div class="trust-val">0<span>€</span></div>
+                  <div class="trust-label">Pérdida de garantía oficial en mantenimiento programado</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tarjeta Interactiva de Diagnosis Rápida en Hero -->
+            <div class="hero-card">
+              <div class="hero-card-image-wrap">
+                <img src="assets/equipment.jpg" alt="Instalaciones y elevadores de Nebot Automoción en Castellón" />
+                <div class="telemetry-badge">
+                  <span class="status-dot"></span>
+                  LÍNEA PRE-ITV Y DIAGNOSIS ACTIVA
+                </div>
+              </div>
+
+              <div class="quick-finder-title">
+                ¿Qué necesita hoy tu vehículo?
+                <span>DIAGNÓSTICO RÁPIDO</span>
+              </div>
+              <div class="symptom-pills">
+                <button type="button" class="symptom-btn active" data-symptom="testigo">Testigo / Diagnosis</button>
+                <button type="button" class="symptom-btn" data-symptom="itv">Pre-ITV / Pasar ITV</button>
+                <button type="button" class="symptom-btn" data-symptom="inyeccion">Inyección Diésel / Gasolina</button>
+                <button type="button" class="symptom-btn" data-symptom="frenos">Frenos y Neumáticos</button>
+                <button type="button" class="symptom-btn" data-symptom="clima">Aire Acondicionado</button>
+                <button type="button" class="symptom-btn" data-symptom="golpe">Carrocería / Lunas</button>
+              </div>
+              <div class="symptom-result" id="symptomResult"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Ventajas Diferenciales -->
+        <div class="perks-grid">
+          <div class="perk-card">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3>Garantía Oficial Intacta</h3>
+              <p>Revisiones periódicas bajo pautas del fabricante sin perder la garantía de origen.</p>
+            </div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <h3>Línea Pre-ITV + ITV por Ti</h3>
+              <p>Analizadores de gases y línea pre-ITV propia. Recogemos tu coche y pasamos la ITV sin esperas.</p>
+            </div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            </div>
+            <div>
+              <h3>Coche de Sustitución</h3>
+              <p>Disponibilidad de vehículo de sustitución y servicio de recogida y entrega a domicilio.</p>
+            </div>
+          </div>
+          <div class="perk-card">
+            <div class="perk-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <h3>Servicio de Grúa Propio</h3>
+              <p>Trasladamos tu vehículo averiado hasta nuestras instalaciones con tarifas muy económicas por km.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accesos Directos a las Pestañas -->
+        <div class="home-hub-grid">
+          <button type="button" class="hub-card" onclick="switchMainTab('equipamiento')">
+            <div>
+              <div class="hub-card-top">
+                <div class="hub-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                </div>
+                <span class="service-cat-tag">PESTAÑA 02</span>
+              </div>
+              <h3 style="margin-top:14px;">Equipamiento Técnico</h3>
+              <p>Maquinaria, puentes elevadores, equipos de diagnosis multimarca, analizadores de gases, línea Pre-ITV y banco de inyección.</p>
+            </div>
+            <span class="hub-link">Abrir pestaña de Equipamiento →</span>
+          </button>
+
+          <button type="button" class="hub-card" onclick="switchMainTab('servicios')">
+            <div>
+              <div class="hub-card-top">
+                <div class="hub-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <span class="service-cat-tag">PESTAÑA 03</span>
+              </div>
+              <h3 style="margin-top:14px;">Catálogo de 20 Servicios</h3>
+              <p>Mecánica general y rápida, inyección diésel/gasolina, electricidad, electrónica, frenos, neumáticos, carrocería, pintura y lunas.</p>
+            </div>
+            <span class="hub-link">Explorar los 20 servicios →</span>
+          </button>
+
+          <button type="button" class="hub-card" onclick="switchMainTab('consejos')">
+            <div>
+              <div class="hub-card-top">
+                <div class="hub-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <span class="service-cat-tag">PESTAÑA 05</span>
+              </div>
+              <h3 style="margin-top:14px;">Asesor por Kilometraje</h3>
+              <p>Consulta el consejo experto sobre catalizadores (revisión cada 30.000 km) y calcula qué mantenimiento necesita tu vehículo hoy.</p>
+            </div>
+            <span class="hub-link">Calcular mantenimiento →</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 2: EQUIPAMIENTO (/page/equipment)
+           ========================================================= -->
+      <section class="tab-panel" id="tab-equipamiento" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Equipamiento del Taller · Tecnología Multimarca</div>
+          <h2 class="section-title">Equipamiento Moderno y Completo para Intervenir Cualquier Sistema</h2>
+          <p class="section-desc">
+            El moderno y completo equipamiento con el que contamos nos permite ofrecerle todos los servicios que requiere su vehículo, pudiendo intervenir con precisión sobre cualquiera de los sistemas que éste incorpora: <strong>maquinaria, elevadores, equipos de diagnosis, analizadores de gases, línea Pre-ITV y bancos de inyección</strong>.
+          </p>
+        </div>
+
+        <div class="equipment-layout">
+          <div class="equipment-tabs" id="equipmentTabs" role="tablist">
+            <!-- Renderizado dinámico por app.js -->
+          </div>
+          <div class="equipment-display" id="equipmentDisplay">
+            <!-- Renderizado dinámico por app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 3: SERVICIOS (LOS 20 SERVICIOS REALES)
+           ========================================================= -->
+      <section class="tab-panel" id="tab-servicios" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Catálogo Oficial · 20 Especialidades</div>
+          <h2 class="section-title">Todos los Servicios que tu Vehículo Necesita Bajo un Mismo Techo</h2>
+          <p class="section-desc">
+            Filtra por especialidad o busca cualquier intervención: desde mecánica rápida sin cita previa hasta reparaciones de sistemas de inyección diésel/gasolina, redes electrónicas multiplexadas y carrocería integral.
+          </p>
+        </div>
+
+        <div class="services-controls">
+          <div class="filter-pills" role="tablist">
+            <button type="button" class="filter-btn active" data-filter="all">Todos (20)</button>
+            <button type="button" class="filter-btn" data-filter="mecanica">Mecánica, Motor e Inyección</button>
+            <button type="button" class="filter-btn" data-filter="electronica">Diagnosis, Electricidad y Clima</button>
+            <button type="button" class="filter-btn" data-filter="itv">Pre-ITV y Mantenimiento</button>
+            <button type="button" class="filter-btn" data-filter="carroceria">Carrocería, Lunas y Limpieza</button>
+            <button type="button" class="filter-btn" data-filter="asistencia">Grúa, Recogida y Sustitución</button>
+          </div>
+
+          <div class="service-search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" id="serviceSearchInput" class="service-search-input" placeholder="Buscar servicio (ej. inyección, embrague, ITV, lunas...)" />
+          </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+          <!-- Renderizado dinámico de los 20 servicios por app.js -->
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 4: EL TALLER Y GARANTÍA (/page/the-workshop)
+           ========================================================= -->
+      <section class="tab-panel" id="tab-el-taller" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Sobre Nosotros · El Taller</div>
+          <h2 class="section-title">Profesionales con Amplia Experiencia y Formación Continua</h2>
+          <p class="section-desc">
+            Conoce nuestra filosofía de trabajo en Castelló de la Plana: formación sistemática en las tecnologías más recientes y garantía total en recambios y mano de obra.
+          </p>
+        </div>
+
+        <div class="workshop-grid">
+          <div class="workshop-visual">
+            <img src="assets/workshop.jpg" alt="Equipo de profesionales de Nebot Automoción" class="workshop-main-img" />
+            <div class="workshop-floating-card">
+              <h4>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Calidad y Normativa Vigente Garantizada
+              </h4>
+              <p>Todos nuestros servicios y productos están garantizados y se adaptan a las estrictas normativas de calidad vigentes.</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="section-desc" style="margin-bottom: 16px;">
+              Somos profesionales con muchos años de experiencia en el sector y sistemáticamente formados en las más novedosas tecnologías, lo cual nos permite garantizarle la resolución de cualquier intervención sobre su vehículo de la manera más profesional.
+            </p>
+            <p class="section-desc">
+              En nuestras instalaciones de la <strong>Avda. Almazora, 96 (Castelló de la Plana)</strong> podemos realizar cualquier reparación, desde la más simple y rápida hasta la más compleja: mecánica, electricidad, electrónica, transmisión, inyección y carrocería.
+            </p>
+
+            <ul class="check-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Todas las marcas del mercado:</strong> Trabajamos tanto en turismos como en vehículos comerciales, gasolina o diésel.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Especialistas en Inyección:</strong> Desde bombas de inyección rotativas tradicionales hasta sistemas Common Rail e inyección directa de última generación.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Mantenimiento sin perder garantía:</strong> Revisiones periódicas predefinidas que aseguran conservar la garantía oficial dada por el fabricante.</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div><strong>Comodidad total para el cliente:</strong> Servicio de recogida y entrega a domicilio, vehículo de sustitución, servicio de grúa y gestión de ITV.</div>
+              </li>
+            </ul>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <button type="button" class="btn btn-primary" onclick="switchMainTab('contacto')">Pedir Cita en el Taller</button>
+              <button type="button" class="btn btn-outline" onclick="switchMainTab('equipamiento')">Ver Nuestro Equipamiento</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 5: ASESOR KM & CONSEJOS ("Un buen consejo")
+           ========================================================= -->
+      <section class="tab-panel" id="tab-consejos" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Prevención Mecánica · Consejos de Nebot Automoción</div>
+          <h2 class="section-title">Cuida la Vida Útil de tu Motor y Anticipa Averías Costosas</h2>
+          <p class="section-desc">
+            Un mantenimiento preventivo a tiempo evita roturas graves en el sistema de escape, inyección y distribución. Consulta nuestro consejo destacado y calcula qué revisión le toca a tu vehículo.
+          </p>
+        </div>
+
+        <div class="advisor-grid">
+          <div class="tip-spotlight-card">
+            <div class="tip-img-wrap">
+              <img src="assets/tip.jpg" alt="Revisión de catalizador y sistema de escape en Nebot Automoción" />
+              <span class="tip-tag">Un Buen Consejo</span>
+            </div>
+            <div class="tip-body">
+              <div>
+                <h3>¿Cada cuánto suele cambiarse un catalizador?</h3>
+                <p>
+                  En condiciones normales los catalizadores suelen sustituirse cada <strong>80.000 a 100.000 km</strong>, pero en caso de impacto sobre el cuerpo de éste puede producirse su destrucción interna de manera fulminante.
+                </p>
+                <p>
+                  Por ello, en <strong>Nebot Automoción</strong> es aconsejable revisar el catalizador, silenciosos y filtro de partículas (FAP) al menos una vez cada <strong>30.000 km</strong> con nuestros analizadores de gases y elevadores.
+                </p>
+              </div>
+              <button type="button" class="btn btn-outline" onclick="selectServiceAndOpenBooking('Tubo de escape')">
+                Solicitar Revisión de Catalizador y Escape
+              </button>
+            </div>
+          </div>
+
+          <div class="km-calculator-card">
+            <div>
+              <div class="eyebrow" style="margin-bottom:12px;">Planificador Interactivo</div>
+              <h3 style="font-family:var(--font-display); font-size:1.45rem; margin-bottom:8px;">Asesor de Revisión según Kilometraje</h3>
+              <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:22px;">
+                Desliza para indicar el kilometraje actual o próximo intervalo de tu vehículo y descubre los puntos clave que revisamos:
+              </p>
+
+              <div class="km-slider-header">
+                <span style="font-size:0.88rem; font-weight:700; color:var(--text-secondary);">Kilometraje del vehículo:</span>
+                <span class="km-value-badge" id="kmValueDisplay">60.000 km</span>
+              </div>
+              <input type="range" id="kmRangeInput" class="km-range" min="15000" max="150000" step="15000" value="60000" aria-label="Kilometraje del vehículo" />
+
+              <div class="km-recommendations" id="kmRecommendationsList">
+                <!-- Renderizado dinámico por app.js -->
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="selectServiceAndOpenBooking('Mantenimiento programado')">
+              Reservar Revisión Oficial (Sin Perder Garantía)
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 6: GALERÍA DE IMÁGENES (/page/app/image-gallery)
+           ========================================================= -->
+      <section class="tab-panel" id="tab-galeria" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Galería de Imágenes · Nuestras Instalaciones</div>
+          <h2 class="section-title">Tecnología, Orden y Precisión en Cada Intervención</h2>
+          <p class="section-desc">
+            Pulsa sobre cualquier imagen para ampliarla a pantalla completa y conocer de cerca nuestro equipamiento de diagnosis, motores, línea de elevación y banco de trabajo.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item" data-img="assets/equipment.jpg" data-title="Zona de Elevadores Electrohidráulicos y Mecánica General">
+            <img src="assets/equipment.jpg" alt="Zona de elevadores y equipamiento de Nebot Automoción" />
+            <div class="gallery-caption">
+              <span>EQUIPAMIENTO · ELEVACIÓN</span>
+              <h4>Puentes Elevadores y Chasis</h4>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-img="assets/gallery1.jpg" data-title="Diagnosis Electrónica y Comprobación de Sistemas del Motor">
+            <img src="assets/gallery1.jpg" alt="Diagnosis electrónica avanzada en Nebot Automoción" />
+            <div class="gallery-caption">
+              <span>DIAGNOSIS · ELECTRÓNICA</span>
+              <h4>Equipos de Diagnosis y Telemetría</h4>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-img="assets/gallery2.jpg" data-title="Sistemas de Inyección Diésel y Gasolina de Última Generación">
+            <img src="assets/gallery2.jpg" alt="Motor e inyección diésel y gasolina en Nebot Automoción" />
+            <div class="gallery-caption">
+              <span>MOTOR · INYECCIÓN</span>
+              <h4>Inyección Diésel y Gasolina</h4>
+            </div>
+          </div>
+
+          <div class="gallery-item" data-img="assets/workshop.jpg" data-title="Equipo Técnico Profesional de Nebot Automoción">
+            <img src="assets/workshop.jpg" alt="Profesionales de Nebot Automoción en Castellón" />
+            <div class="gallery-caption">
+              <span>EL TALLER · PROFESIONALES</span>
+              <h4>Atención Personalizada Multimarca</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           PESTAÑA 7: CITA PREVIA Y CONTACTO
+           ========================================================= -->
+      <section class="tab-panel" id="tab-contacto" role="tabpanel">
+        <div class="section-header">
+          <div class="eyebrow">Contacto Directo y Cita Previa · Castelló de la Plana</div>
+          <h2 class="section-title">¿Hablamos? Pide tu Cita o Solicita Presupuesto sin Compromiso</h2>
+          <p class="section-desc">
+            Estamos en <strong>Avda. Almazora, 96 (12005 Castelló de la Plana)</strong>. Llámanos directamente o envíanos tu solicitud indicando qué servicio o modalidad de recogida necesitas.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card">
+            <h3 style="font-family:var(--font-display); font-size:1.4rem; margin-bottom:6px;">NEBOT AUTOMOCIÓN</h3>
+            <p style="color:var(--text-secondary); font-size:0.9rem;">Taller Mecánico, Electricidad, Electrónica, Inyección y Carrocería en Castellón</p>
+
+            <div class="contact-info-list">
+              <div class="contact-row">
+                <div class="contact-row-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <h4>Dirección del Taller</h4>
+                  <p>Avda. Almazora, 96<br>12005 Castelló de la Plana (Castellón)</p>
+                  <a href="https://maps.google.com/maps/?q=39.972942,-0.0501026" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700; font-size:0.85rem; display:inline-block; margin-top:4px;">
+                    Abrir ruta en Google Maps →
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-row-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <h4>Teléfono de Atención y Citas</h4>
+                  <p><a href="tel:+34964218668" style="font-size:1.18rem; font-weight:800; color:var(--accent);">+34 964 21 86 68</a></p>
+                  <p style="font-size:0.82rem;">Atención directa en horario de taller y servicio de carrocería rápida sin cita previa.</p>
+                </div>
+              </div>
+
+              <div class="contact-row">
+                <div class="contact-row-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <h4>Servicios de Movilidad y Comodidad</h4>
+                  <p>• Recogida y entrega de vehículo a domicilio<br>• Pasamos la ITV por usted<br>• Vehículo de sustitución y servicio de grúa</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-frame-wrap">
+              <iframe
+                title="Mapa de ubicación de Nebot Automoción en Avda. Almazora 96, Castellón"
+                src="https://maps.google.com/maps?q=39.972942,-0.0501026&z=16&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="booking-form-card">
+            <h3 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom:6px;">Solicitar Cita Previa o Presupuesto</h3>
+            <p style="color:var(--text-secondary); font-size:0.92rem; margin-bottom:24px;">
+              Selecciona el servicio que necesitas y te confirmaremos disponibilidad de inmediato.
+            </p>
+
+            <form id="bookingForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="clientName">Nombre y Apellidos *</label>
+                  <input type="text" id="clientName" class="form-control" placeholder="Ej. Carlos Nebot" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="clientPhone">Teléfono de contacto *</label>
+                  <input type="tel" id="clientPhone" class="form-control" placeholder="Ej. 600 123 456" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="clientVehicle">Marca, Modelo y Motor</label>
+                  <input type="text" id="clientVehicle" class="form-control" placeholder="Ej. Seat León 2.0 TDI / Ford Transit" />
+                </div>
+
+                <div class="form-group">
+                  <label for="bookingServiceSelect">Servicio principal *</label>
+                  <select id="bookingServiceSelect" class="form-control" required></select>
+                </div>
+
+                <div class="form-group full">
+                  <label for="clientExtras">¿Necesitas algún servicio adicional de comodidad?</label>
+                  <select id="clientExtras" class="form-control">
+                    <option value="ninguno">No, llevaré el vehículo personalmente al taller</option>
+                    <option value="Recogida y entrega a domicilio">Sí, quiero Servicio de Entrega y Recogida a domicilio</option>
+                    <option value="Pasamos la ITV por usted">Sí, quiero que paséis la ITV por mí</option>
+                    <option value="Vehículo de sustitución">Sí, necesito consultar disponibilidad de Vehículo de Sustitución</option>
+                    <option value="Servicio de grúa">Sí, necesito Servicio de Grúa para trasladar el vehículo</option>
+                  </select>
+                </div>
+
+                <div class="form-group full">
+                  <label for="clientNotes">Descripción de la avería, mantenimiento o consulta</label>
+                  <textarea id="clientNotes" class="form-control" placeholder="Cuéntanos qué síntomas notas en tu vehículo, kilometraje actual o qué fecha prefieres..."></textarea>
+                </div>
+
+                <div class="form-group full">
+                  <button type="submit" class="btn btn-primary" style="width:100%; padding:15px;">
+                    Confirmar Solicitud de Cita / Presupuesto
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="form-feedback" id="bookingFeedback"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer con Enlaces Directos a cada Pestaña -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom:12px; color:#fff;" onclick="switchMainTab('inicio')">
+            <div class="brand-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <span class="brand-name" style="color:#fff;">NEBOT <span>AUTOMOCIÓN</span></span>
+              <span class="brand-sub" style="color:#94a3b8;">Castelló de la Plana</span>
+            </div>
+          </div>
+          <p style="margin-bottom:12px;">
+            Taller mecánico multimarca en Castellón. Especialistas en diagnosis computerizada, inyección diésel y gasolina, mantenimiento programado, línea Pre-ITV y carrocería.
+          </p>
+          <p style="font-family:var(--font-mono); font-size:0.8rem; color:#e2e8f0;">
+            📍 Avda. Almazora, 96 · 12005 Castelló de la Plana<br>
+            📞 Teléfono: <a href="tel:+34964218668" style="color:#38bdf8; text-decoration:none;">964 21 86 68</a>
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pestañas de la Web</h4>
+          <ul class="footer-links">
+            <li><button type="button" onclick="switchMainTab('inicio')">Inicio y Diagnóstico Rápido</button></li>
+            <li><button type="button" onclick="switchMainTab('equipamiento')">Equipamiento Técnico (5 Áreas)</button></li>
+            <li><button type="button" onclick="switchMainTab('servicios')">Catálogo de Servicios (20)</button></li>
+            <li><button type="button" onclick="switchMainTab('el-taller')">El Taller y Garantía Oficial</button></li>
+            <li><button type="button" onclick="switchMainTab('consejos')">Asesor Km y Consejos</button></li>
+            <li><button type="button" onclick="switchMainTab('galeria')">Galería de Instalaciones</button></li>
+            <li><button type="button" onclick="switchMainTab('contacto')">Cita Previa y Contacto</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Servicios Destacados</h4>
+          <ul class="footer-links">
+            <li><button type="button" onclick="selectServiceAndOpenBooking('Mecánica general')">Mecánica General y Rápida</button></li>
+            <li><button type="button" onclick="selectServiceAndOpenBooking('Inyección diésel')">Inyección Diésel y Gasolina</button></li>
+            <li><button type="button" onclick="selectServiceAndOpenBooking('Diagnosis')">Electricidad y Electrónica</button></li>
+            <li><button type="button" onclick="selectServiceAndOpenBooking('Pasamos la ITV por usted')">Pre-ITV y Pasamos la ITV por ti</button></li>
+            <li><button type="button" onclick="selectServiceAndOpenBooking('Carrocería rápida')">Carrocería, Pintura y Lunas</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Información Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-open-legal>Aviso legal y condiciones de uso</a></li>
+            <li><a href="#" data-open-legal>Política de privacidad</a></li>
+            <li><a href="#" data-open-legal>Política de cookies</a></li>
+            <li><a href="https://maps.google.com/maps/?q=39.972942,-0.0501026" target="_blank" rel="noopener">Cómo llegar al taller</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 NEBOT AUTOMOCIÓN · Avda. Almazora, 96, 12005 Castelló de la Plana (Castellón). Todos los derechos reservados.</span>
+        <span>Interfaz por Pestañas · Nebot Automoción</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Lightbox para Galería -->
+  <div class="modal-backdrop" id="lightboxModal" role="dialog" aria-modal="true">
+    <div class="modal-box" style="max-width:860px; padding:20px;">
+      <button class="modal-close" aria-label="Cerrar imagen">✕</button>
+      <img id="lightboxImg" src="" alt="Vista ampliada" style="width:100%; border-radius:var(--radius-md); display:block; margin-bottom:14px;" />
+      <h4 id="lightboxTitle" style="font-family:var(--font-display); font-size:1.15rem; text-align:center;"></h4>
+    </div>
+  </div>
+
+  <!-- Modal Aviso Legal / Privacidad -->
+  <div class="modal-backdrop" id="legalModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Cerrar aviso legal">✕</button>
+      <h3 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom:14px;">Aviso Legal, Privacidad y Condiciones de Uso</h3>
+      <div style="color:var(--text-secondary); font-size:0.9rem; display:grid; gap:12px;">
+        <p><strong>Identificación del titular del sitio web (LSSICE):</strong> En cumplimiento de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico, se informa que el titular del sitio web es <strong>NEBOT AUTOMOCIÓN</strong>, con domicilio social en <strong>AVDA. ALMAZORA, 96, Castelló de la Plana 12005, Castellón/Castelló (España)</strong> y teléfono de contacto <strong>+34 964 21 86 68</strong>.</p>
+        <p><strong>Finalidad del sitio web:</strong> Informar debidamente de los productos y servicios de mantenimiento, reparación mecánica, electricidad, electrónica, inyección, carrocería y Pre-ITV prestados por NEBOT AUTOMOCIÓN, así como facilitar la solicitud de cita previa o presupuesto.</p>
+        <p><strong>Protección de Datos (RGPD):</strong> Los datos de carácter personal facilitados a través del formulario de cita previa o contacto serán tratados exclusivamente por NEBOT AUTOMOCIÓN con la finalidad de gestionar su solicitud de cita, presupuesto o consulta técnica, sin ser cedidos a terceros salvo obligación legal.</p>
+        <p><strong>Legislación aplicable y jurisdicción:</strong> La relación entre el usuario y el prestador se regirá por la normativa vigente en el territorio español, sometiéndose a los Juzgados y Tribunales de Castellón/Castelló.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
